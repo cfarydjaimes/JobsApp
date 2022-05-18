@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Hola!</h1>
+    <h2>Disponimos de una vacante:</h2>
+    
+    <h3 th:text="'Titulo: ' + ${name}"> </h3>
+    <h3 th:text="'Fecha: ' + ${date}"></h3>
+    <h3 th:text="'Salario: ' + ${salary}"></h3>
+    <h3 th:text="'Activo: '+ ${current}"></h3>
+
+</body>
+</html>
