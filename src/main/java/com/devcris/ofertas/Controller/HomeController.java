@@ -1,7 +1,5 @@
 package com.devcris.ofertas.Controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,9 +18,8 @@ public class HomeController {
     private IVacanteService serviceVacante;
 
     @GetMapping("/tabla")
-    public String mostratTabla(Model model){
-        List<Vacante> lista = serviceVacante.buscarTodas();
-        model.addAttribute("listvacantes", lista);
+    public String mostratTabla(Model model) {
+
         return "tabla";
     }
 
@@ -52,19 +49,11 @@ public class HomeController {
         return "listado";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String verHome(Model model) {
 
-        String nombre = "Tecnico en Sistemas";
-        Date fec = new Date();
-        double salario = 9000.0;
-        boolean vigente = true;
-
-        model.addAttribute("name", nombre);
-        model.addAttribute("date", fec);
-        model.addAttribute("salary", salario);
-        model.addAttribute("current", vigente);
-
+        List<Vacante> lista = serviceVacante.buscarTodas();
+        model.addAttribute("listvacantes", lista);
         return "home";
     }
 

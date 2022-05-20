@@ -27,7 +27,7 @@ public class VacanteService implements IVacanteService {
             vacante1.setFecha(ff.parse("18-05-2022"));
             vacante1.setSalario(1800000.0);
             vacante1.setDestacado(1);
-            vacante1.setImage("empresa2.png");
+            vacante1.setImage("logo6.png");
 
             Vacante vacante2 = new Vacante();
             vacante2.setId(2);
@@ -36,7 +36,7 @@ public class VacanteService implements IVacanteService {
             vacante2.setFecha(ff.parse("17-05-2022"));
             vacante2.setSalario(2400000.0);
             vacante2.setDestacado(0);
-            vacante2.setImage("empresa1.png");
+            vacante2.setImage("logo2.png");
 
             Vacante vacante3 = new Vacante();
             vacante3.setId(3);
@@ -45,7 +45,7 @@ public class VacanteService implements IVacanteService {
             vacante3.setFecha(ff.parse("12-05-2022"));
             vacante3.setSalario(2800000.0);
             vacante3.setDestacado(1);
-            vacante3.setImage("empresa3.png");
+            vacante3.setImage("logo3.png");
 
             lista.add(vacante1);
             lista.add(vacante2);
