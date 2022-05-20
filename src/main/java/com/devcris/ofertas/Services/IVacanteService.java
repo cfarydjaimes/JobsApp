@@ -1,0 +1,14 @@
+package com.devcris.ofertas.Services;
+
+import java.util.List;
+
+import com.devcris.ofertas.Models.Vacante;
+
+
+public interface IVacanteService {
+    
+    List<Vacante> buscarTodas(); 
+
+    Vacante buscarPorID(Integer ID);
+    
+}

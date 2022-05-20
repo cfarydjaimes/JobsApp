@@ -24,6 +24,8 @@
             <th>Fecha de publicación</th>
             <th>Salário</th>
             <th>Destacada</th>
+            <th>Detalle</th>
+            <th>Borrar</th>
         </tr>
         <tr th:each="vacante : ${listvacantes}">
             <td>
@@ -34,10 +36,17 @@
             <td th:text="${vacante.descripcion}">Descripción</td>
             <td th:text="${vacante.fecha}">Fecha</td>
             <td th:text="${vacante.salario}">Salario</td>
+            
             <!--<td th:text="${vacante.destacado == 1 ? 'SI' : 'NO'}">Destacada</td>  -->
             <td>
                 <span th:if="${vacante.destacado==1}" class="badge text-bg-success">Si</span>
                 <span th:unless="${vacante.destacado==1}" class="badge text-bg-danger">NO</span>
+            </td>
+            <td>
+                <a th:href="@{/vacantes/view/{temp} (temp=${vacante.id})}" class="btn btn-primary">Detalle</a>
+            </td>
+            <td>
+                <a th:href="@{/vacantes/delete(id=${vacante.id})}" class="btn btn-danger">Borrar</a>
             </td>
         </tr>
     </table>
