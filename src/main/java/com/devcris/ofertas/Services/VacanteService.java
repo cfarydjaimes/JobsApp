@@ -27,6 +27,7 @@ public class VacanteService implements IVacanteService {
             vacante1.setFecha(ff.parse("18-05-2022"));
             vacante1.setSalario(1800000.0);
             vacante1.setDestacado(1);
+            vacante1.setEstatus("Aprovada");
             vacante1.setImage("logo6.png");
 
             Vacante vacante2 = new Vacante();
@@ -36,6 +37,7 @@ public class VacanteService implements IVacanteService {
             vacante2.setFecha(ff.parse("17-05-2022"));
             vacante2.setSalario(2400000.0);
             vacante2.setDestacado(0);
+            vacante2.setEstatus("Creada");
             vacante2.setImage("logo2.png");
 
             Vacante vacante3 = new Vacante();
@@ -45,6 +47,7 @@ public class VacanteService implements IVacanteService {
             vacante3.setFecha(ff.parse("12-05-2022"));
             vacante3.setSalario(2800000.0);
             vacante3.setDestacado(1);
+            vacante3.setEstatus("Creada");
             vacante3.setImage("logo3.png");
 
             lista.add(vacante1);
@@ -57,18 +60,21 @@ public class VacanteService implements IVacanteService {
 
     }
 
-    
-
     public List<Vacante> buscarTodas() {
         return lista;
     }
 
     public Vacante buscarPorID(Integer ID) {
         for (Vacante v : lista) {
-            if(v.getId()==ID){
+            if (v.getId() == ID) {
                 return v;
             }
         }
         return null;
+    }
+
+    @Override
+    public void guardar(Vacante vacante) {
+        lista.add(vacante);
     }
 }
