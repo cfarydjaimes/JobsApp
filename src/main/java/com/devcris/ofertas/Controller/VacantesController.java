@@ -54,19 +54,6 @@ public class VacantesController {
         webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
-    // @PostMapping("/save")
-    // public String guardar(@RequestParam("nombre") String nombre,
-    // @RequestParam("descripcion") String descripcion,
-    // @RequestParam("estatus") String estatus, @RequestParam("fecha") String fecha,
-    // @RequestParam("destacado") Integer destacado, @RequestParam("salario") double
-    // salario,
-    // @RequestParam("detalles") String detalles) {
-
-    // System.out.println(nombre + descripcion + estatus + fecha + destacado +
-    // salario + detalles);
-
-    // return "vacantes/listVacantes";
-    // }
 
     @GetMapping("/delete")
     public String eliminarVacante(@RequestParam("id") int idVacante, Model model) {
