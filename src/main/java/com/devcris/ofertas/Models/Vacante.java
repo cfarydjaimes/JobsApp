@@ -12,6 +12,17 @@ public class Vacante {
     private Integer destacado;
     private String detalles;
     private String image = "no-image.png";
+    private Categoria categoria;
+
+    
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public String getDetalles() {
         return detalles;
@@ -87,9 +98,9 @@ public class Vacante {
 
     @Override
     public String toString() {
-        return "Vacante [descripcion=" + descripcion + ", destacado=" + destacado + ", detalles=" + detalles
-                + ", estatus=" + estatus + ", fecha=" + fecha + ", id=" + id + ", image=" + image + ", nombre=" + nombre
-                + ", salario=" + salario + "]";
+        return "Vacante [categoria=" + categoria + ", descripcion=" + descripcion + ", destacado=" + destacado
+                + ", detalles=" + detalles + ", estatus=" + estatus + ", fecha=" + fecha + ", id=" + id + ", image="
+                + image + ", nombre=" + nombre + ", salario=" + salario + "]";
     }
 
 }

@@ -43,7 +43,7 @@ public class CategoriaController {
             }
         }
         categoriaService.guardar(categoria);
-        redirectAttributes.addFlashAttribute("msg", "+Registro guardado");
+        redirectAttributes.addFlashAttribute("msg", "Registro guardado");
         return "redirect:/categorias/index";
     }
 }
