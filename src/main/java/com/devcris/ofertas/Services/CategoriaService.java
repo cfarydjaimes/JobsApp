@@ -24,17 +24,15 @@ public class CategoriaService implements ICategoriaService {
 
     }
 
-    @Override
+
     public void guardar(Categoria categoria) {
         lista.add(categoria);
     }
 
-    @Override
     public List<Categoria> buscarTodas() {
         return lista;
     }
 
-    @Override
     public Categoria buscarPorId(Integer id) {
 
         for (Categoria c : lista) {
@@ -43,6 +41,11 @@ public class CategoriaService implements ICategoriaService {
             }
         }
         return null;
+    }
+
+    public void eliminar(Integer idCategoria) {
+
+        
     }
 
 }

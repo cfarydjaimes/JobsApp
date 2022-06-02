@@ -28,7 +28,7 @@ public class VacanteService implements IVacanteService {
             vacante1.setSalario(1800000.0);
             vacante1.setDestacado(1);
             vacante1.setEstatus("Aprovada");
-            vacante1.setImage("logo6.png");
+            vacante1.setImagen("logo6.png");
 
             Vacante vacante2 = new Vacante();
             vacante2.setId(2);
@@ -38,7 +38,7 @@ public class VacanteService implements IVacanteService {
             vacante2.setSalario(2400000.0);
             vacante2.setDestacado(0);
             vacante2.setEstatus("Creada");
-            vacante2.setImage("logo2.png");
+            vacante2.setImagen("logo2.png");
 
             Vacante vacante3 = new Vacante();
             vacante3.setId(3);
@@ -48,7 +48,7 @@ public class VacanteService implements IVacanteService {
             vacante3.setSalario(2800000.0);
             vacante3.setDestacado(1);
             vacante3.setEstatus("Creada");
-            vacante3.setImage("logo3.png");
+            vacante3.setImagen("logo3.png");
 
             lista.add(vacante1);
             lista.add(vacante2);
@@ -73,8 +73,17 @@ public class VacanteService implements IVacanteService {
         return null;
     }
 
-    @Override
     public void guardar(Vacante vacante) {
         lista.add(vacante);
+    }
+
+    public List<Vacante> buscarPorDestacadas() {
+
+        return null;
+    }
+
+
+    public void eliminar(Integer id) {
+        
     }
 }

@@ -21,7 +21,7 @@
   <main role="main">
     <div class="jumbotron">
       <div class="container">
-        <h3>Encuentra el trabajo que andas buscando.</h3>
+        <h3>Encuentra el trabajo que estas buscando.</h3>
         Puedes buscar por descripción y categoría.
         <form class="form-inline">
           <input type="text" class="form-control mb-3" id="exampleFormControlInput1"
@@ -44,12 +44,12 @@
       <hr>
       <div class="row" th:each="temp : ${listvacantes}">
         <div class="col-md-3">
-          <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${temp.image} ) }" alt="Generic placeholder image" width="220"
+          <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${temp.imagen} ) }" alt="Generic placeholder image" width="220"
             height="220">
         </div>
         <div class="col-md-9">
-          <h2 th:text="${temp.nombre}">Arquitecto</h2>
-          <h6 class="card-title"><strong>Categoría: </strong> <span>Nombre categoria</span></h6>
+          <h2 th:text="${temp.nombre}">name</h2>
+          <h6 class="card-title" ><strong>Categoría: </strong> <span th:text="${temp.categoria.nombre}">Nombre categoria</span></h6>
           <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${temp.fecha}">2019-01-01 </span></h6>
           <p th:text="${temp.descripcion}">Descripcion de la vacante</p>
           <p><a th:href="@{/vacantes/view/{det} (det=${temp.id}) }" class="btn btn-secondary" role="button">Ver detalles</a></p>

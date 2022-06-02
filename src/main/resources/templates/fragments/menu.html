@@ -8,16 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link active" th:href="@{/vacantes/index}">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Menu 1</a>
+                <a class="nav-link active" th:href="@{/vacantes/index}">Vacantes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/categorias/index}">Categorias</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
+            </li>
         </ul>
         <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
-        <a class="btn btn-primary" href="#">Registrarse</a>
+        <a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>
     </div>
 </nav>

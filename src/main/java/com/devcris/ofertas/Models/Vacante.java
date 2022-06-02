@@ -2,8 +2,22 @@ package com.devcris.ofertas.Models;
 
 import java.util.Date;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "vacantes")
 public class Vacante {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nombre;
     private String descripcion;
     private String estatus;
@@ -11,10 +25,11 @@ public class Vacante {
     private double salario;
     private Integer destacado;
     private String detalles;
-    private String image = "no-image.png";
-    private Categoria categoria;
+    private String imagen = "no-image.png";
 
-    
+    @OneToOne
+    @JoinColumn(name = "idcategoria")
+    private Categoria categoria;
 
     public Categoria getCategoria() {
         return categoria;
@@ -32,12 +47,12 @@ public class Vacante {
         this.detalles = detalles;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Integer getDestacado() {
@@ -99,8 +114,8 @@ public class Vacante {
     @Override
     public String toString() {
         return "Vacante [categoria=" + categoria + ", descripcion=" + descripcion + ", destacado=" + destacado
-                + ", detalles=" + detalles + ", estatus=" + estatus + ", fecha=" + fecha + ", id=" + id + ", image="
-                + image + ", nombre=" + nombre + ", salario=" + salario + "]";
+                + ", detalles=" + detalles + ", estatus=" + estatus + ", fecha=" + fecha + ", id=" + id + ", imagen="
+                + imagen + ", nombre=" + nombre + ", salario=" + salario + "]";
     }
 
 }

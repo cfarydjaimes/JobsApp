@@ -16,9 +16,7 @@
 </head>
 
 <body>
-
-    <header th:insert="fragments/menu :: menu-principal" > </header>
-
+    <header th:insert="fragments/menu :: menu-principal"> </header>
     <main role="main">
         <hr>
         <div class="container">
@@ -26,10 +24,14 @@
             <div class="card">
                 <h4 class="card-header"><strong>Listado de Categorías</strong></h4>
                 <div class="card-body">
-                    <a class="btn btn-primary" th:href="@{/categorias/create}" role="button"><i class="fas fa-file" aria-hidden="true"></i>
+                    <a class="btn btn-primary" th:href="@{/categorias/create}" role="button"><i class="fas fa-file"
+                            aria-hidden="true"></i>
                         Nueva</a>
                     <hr>
-                    <div th:if="${msg != null}" class="alert alert-success" role="alert" th:text="${msg}"></div>
+                    <div th:if="${msg!= null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+                    <div th:if="${msgImpossible!= null}" class='alert alert-danger' th:text="${msgImpossible}"
+                        role='alert'></div>
+                        
                     <table class="table table-hover">
                         <thead class="thead-light">
                             <tr>
@@ -42,19 +44,19 @@
                         <tbody>
                             <tr th:each="temp : ${categoria}">
                                 <th th:text="${temp.id}" scope="row">id</th>
-                                <td th:text="${temp.nombre}">nombre</td>
+                                <td th:text="${temp.nombre}" >nombre</td>
                                 <td th:text="${temp.descripcion}">descipcion</td>
                                 <td>
-                                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar"><i
+                                    <a th:href="@{/categorias/update/{idcat} (idcat= ${temp.id})}" class="btn btn-success btn-sm" role="button" title="Editar"><i
                                             class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                                    <a href="#" onclick="return confirm('¿Estas seguro?')"
-                                        class="btn btn-success btn-sm" role="button" title="Eliminar"><i
-                                            class="fas fa-trash" aria-hidden="true"></i></a>
+                                    <a th:href="@{/categorias/delete/{idcat} (idcat = ${temp.id})}"
+                                        onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm"
+                                        role="button" title="Eliminar"><i class="fas fa-trash"
+                                            aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -66,11 +68,11 @@
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-          setTimeout(function () {
-            $(".alert").alert('close');
-          }, 3000);
+            setTimeout(function () {
+                $(".alert").alert('close');
+            }, 3000);
         });
-      </script>
+    </script>
 </body>
 
 </html>
