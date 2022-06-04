@@ -8,9 +8,13 @@ import com.devcris.ofertas.Repositories.CategoriasRepository;
 import com.devcris.ofertas.Services.ICategoriaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Primary
 public class CategoriasServiceJpa implements ICategoriaService {
 
     @Autowired
@@ -37,6 +41,10 @@ public class CategoriasServiceJpa implements ICategoriaService {
         categoriasRepository.deleteById(idCategoria);
     }
 
-    
+    public Page<Categoria> buscarTodas(Pageable page) {
+        
+        return categoriasRepository.findAll(page);
+    }
+
 
 }

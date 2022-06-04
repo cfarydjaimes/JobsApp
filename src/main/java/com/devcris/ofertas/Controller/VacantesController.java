@@ -9,6 +9,8 @@ import com.devcris.ofertas.Models.Vacante;
 import com.devcris.ofertas.Services.ICategoriaService;
 import com.devcris.ofertas.Services.IVacanteService;
 import com.devcris.ofertas.Util.Utileria;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -72,7 +74,7 @@ public class VacantesController {
     }
 
     @GetMapping("/edit/{id}")
-    public String actualizar(@PathVariable("id") int idVacante, Model model){
+    public String actualizar(@PathVariable("id") int idVacante, Model model) {
         Vacante vacante = vacanteService.buscarPorID(idVacante);
         model.addAttribute("vacante", vacante);
         setCategorias(model);
@@ -80,7 +82,7 @@ public class VacantesController {
     }
 
     @ModelAttribute
-    public void setCategorias(Model model){
+    public void setCategorias(Model model) {
         model.addAttribute("categorias", categoriaService.buscarTodas());
     }
 
@@ -91,7 +93,7 @@ public class VacantesController {
     }
 
     @GetMapping("/delete/{id}")
-    public String eliminarVacante(@PathVariable("id") int idVacante, RedirectAttributes attributes ) {
+    public String eliminarVacante(@PathVariable("id") int idVacante, RedirectAttributes attributes) {
         attributes.addFlashAttribute("msg", "Vacante eliminada!");
         vacanteService.eliminar(idVacante);
         return "redirect:/vacantes/index";
@@ -108,6 +110,13 @@ public class VacantesController {
     @GetMapping("/index")
     public String mostrarIndex(Model model) {
         List<Vacante> list = vacanteService.buscarTodas();
+        model.addAttribute("vacante", list);
+        return "vacantes/listVacantes";
+    }
+
+    @GetMapping(value = "/indexPaginate")
+    public String mostrarIndexPaginado(Model model, Pageable page) {
+        Page<Vacante> list = vacanteService.buscarTodas(page);
         model.addAttribute("vacante", list);
         return "vacantes/listVacantes";
     }

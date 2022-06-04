@@ -23,16 +23,14 @@
       <div class="container">
         <h3>Encuentra el trabajo que estas buscando.</h3>
         Puedes buscar por descripción y categoría.
-        <form class="form-inline">
-          <input type="text" class="form-control mb-3" id="exampleFormControlInput1"
+        <form class="form-inline" th:action="@{/search}" method="get" th:object="${search}" >
+          <input type="text" class="form-control mb-3" th:field="*{descripcion}" id="exampleFormControlInput1"
             placeholder="Escriba una búsqueda">&nbsp;
-          <select class="custom-select custom-select mb-3">
-            <option selected>Seleccione una categoría</option>
-            <option value="1">Ventas</option>
-            <option value="2">Contabilidad</option>
-            <option value="3">Transporte</option>
-            <option value="4">Informática</option>
-            <option value="5">Construcción</option>
+          <select th:field="*{categoria.id}" class="custom-select custom-select mb-3">
+            <option th:value="${null}" selected>Seleccione una categoría</option>
+            <option th:each="categoria : ${categorias}" 
+                    th:value="${categoria.id}" 
+                    th:text="${categoria.nombre}"></option>
           </select>&nbsp;
           <button type="submit" class="btn btn-primary mb-3">Buscar</button>
         </form>
@@ -48,9 +46,10 @@
             height="220">
         </div>
         <div class="col-md-9">
-          <h2 th:text="${temp.nombre}">name</h2>
-          <h6 class="card-title" ><strong>Categoría: </strong> <span th:text="${temp.categoria.nombre}">Nombre categoria</span></h6>
-          <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${temp.fecha}">2019-01-01 </span></h6>
+          <h2 th:text="${temp.nombre}"></h2>
+          <h6 class="card-title" ><strong>Categoría: </strong> <span th:text="${temp.categoria.nombre}"></span></h6>
+          <h6 class="card-title"><strong>Publicado: </strong><span th:text="${#dates.format(temp.fecha, 'dd-MM-yyyy')}"></span></h6>
+          
           <p th:text="${temp.descripcion}">Descripcion de la vacante</p>
           <p><a th:href="@{/vacantes/view/{det} (det=${temp.id}) }" class="btn btn-secondary" role="button">Ver detalles</a></p>
         </div>

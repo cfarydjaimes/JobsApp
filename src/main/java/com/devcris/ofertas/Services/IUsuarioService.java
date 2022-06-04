@@ -11,4 +11,6 @@ public interface IUsuarioService  {
     void eliminar(Integer idUsuario);
 
     List<Usuario> buscarTodos();
+
+    Usuario buscarUsername(String username);
 }

@@ -22,7 +22,7 @@ public class Vacante {
     private String descripcion;
     private String estatus;
     private Date fecha;
-    private double salario;
+    private Double salario;
     private Integer destacado;
     private String detalles;
     private String imagen = "no-image.png";
@@ -30,6 +30,10 @@ public class Vacante {
     @OneToOne
     @JoinColumn(name = "idcategoria")
     private Categoria categoria;
+
+    public void reset(){
+        this.imagen=null;
+    }
 
     public Categoria getCategoria() {
         return categoria;
@@ -95,11 +99,11 @@ public class Vacante {
         this.fecha = fecha;
     }
 
-    public double getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 

@@ -5,6 +5,9 @@ import java.util.List;
 import com.devcris.ofertas.Models.Categoria;
 import com.devcris.ofertas.Services.ICategoriaService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -66,13 +69,18 @@ public class CategoriaController {
     }
 
     @GetMapping("/update/{id}")
-    public String actualizar(@PathVariable("id") int idCategoria, RedirectAttributes redirectAttributes, Model model ){
+    public String actualizar(@PathVariable("id") int idCategoria, RedirectAttributes redirectAttributes, Model model) {
         Categoria categoria = categoriaService.buscarPorId(idCategoria);
-        System.out.println(categoria);
         redirectAttributes.addFlashAttribute("msg", "Categoria Actualizada!");
         model.addAttribute("categoria", categoria);
         return "categorias/formCategoria";
     }
 
+    @GetMapping(value = "/indexPaginate")
+    public String mostrarIndexPaginado(Model model, Pageable page) {
+        Page<Categoria> list = categoriaService.buscarTodas(page);
+        model.addAttribute("categoria", list);
+        return "categorias/listCategorias";
+    }
 
 }

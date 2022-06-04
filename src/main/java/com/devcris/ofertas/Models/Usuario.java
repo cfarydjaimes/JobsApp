@@ -44,7 +44,6 @@ public class Usuario {
         if (perfiles == null) {
             perfiles = new LinkedList<Perfil>();
         }
-        temPerfil.setPerfil("USUARIO");
         perfiles.add(temPerfil);
     }
 

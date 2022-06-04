@@ -4,6 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.devcris.ofertas.Models.Categoria;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +15,7 @@ public class CategoriaService implements ICategoriaService {
     private List<Categoria> lista = null;
 
     public CategoriaService() {
-        
+
         lista = new LinkedList<>();
 
         Categoria categoria1 = new Categoria();
@@ -23,7 +26,6 @@ public class CategoriaService implements ICategoriaService {
         lista.add(categoria1);
 
     }
-
 
     public void guardar(Categoria categoria) {
         lista.add(categoria);
@@ -44,8 +46,10 @@ public class CategoriaService implements ICategoriaService {
     }
 
     public void eliminar(Integer idCategoria) {
+    }
 
-        
+    public Page<Categoria> buscarTodas(Pageable page) {
+        return null;
     }
 
 }

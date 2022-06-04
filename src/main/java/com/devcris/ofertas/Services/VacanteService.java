@@ -7,6 +7,9 @@ import java.util.List;
 
 import com.devcris.ofertas.Models.Vacante;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -82,8 +85,16 @@ public class VacanteService implements IVacanteService {
         return null;
     }
 
-
     public void eliminar(Integer id) {
-        
+
     }
+
+    public List<Vacante> buscarByExample(Example<Vacante> Example) {
+        return null;
+    }
+
+    public Page<Vacante> buscarTodas(Pageable page) {
+        return null;
+    }
+
 }
