@@ -8,10 +8,10 @@ import com.devcris.ofertas.Repositories.VacantesRepository;
 import com.devcris.ofertas.Services.IVacanteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,10 +37,6 @@ public class VacantesServiceJpa implements IVacanteService {
         vacantesRepository.save(vacante);
     }
 
-    public List<Vacante> buscarPorDestacadas() {
-        return vacantesRepository.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
-    }
-
     public void eliminar(Integer id) {
         vacantesRepository.deleteById(id);
     }
@@ -49,9 +45,8 @@ public class VacantesServiceJpa implements IVacanteService {
         return vacantesRepository.findAll(example);
     }
 
-    public Page<Vacante> buscarTodas(Pageable page) {
+    public Page<Vacante> buscarTodasPage(Pageable page) {
         return vacantesRepository.findAll(page);
     }
-
 
 }

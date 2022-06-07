@@ -41,15 +41,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="temp : ${categoria}">
-                                <th th:text="${temp.id}" scope="row">id</th>
-                                <td th:text="${temp.nombre}">nombre</td>
-                                <td th:text="${temp.descripcion}">descipcion</td>
+                            <tr th:each="categoria : ${categoria}">
+                                <th th:text="${categoria.id}" scope="row">id</th>
+                                <td th:text="${categoria.nombre}">nombre</td>
+                                <td th:text="${categoria.descripcion}">descipcion</td>
                                 <td>
-                                    <a th:href="@{/categorias/update/{idcat} (idcat= ${temp.id})}"
+                                    <a th:href="@{/categorias/update/{idcat} (idcat= ${categoria.id})}"
                                         class="btn btn-success btn-sm" role="button" title="Editar"><i
                                             class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                                    <a th:href="@{/categorias/delete/{idcat} (idcat = ${temp.id})}"
+                                    <a th:href="@{/categorias/delete/{idcat} (idcat = ${categoria.id})}"
                                         onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm"
                                         role="button" title="Eliminar"><i class="fas fa-trash"
                                             aria-hidden="true"></i></a>
@@ -60,17 +60,16 @@
                     <nav th:if="${categoria.totalPages > 0}" aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                           <li class="page-item" th:classappend="${categoria.number == 0 ? 'disabled' : ''}">
-                            <a th:href="@{/vacantes/indexPaginate(page=${categoria.number - 1})}" class="page-link">Anterior</a>
+                            <a th:href="@{/categorias/indexPaginate(page=${categoria.number - 1})}" class="page-link">Anterior</a>
                           </li>
-          
                           <li class="page-item" th:classappend="${i eq categoria.number + 1} ? 'active'"
                             th:each="i : ${#numbers.sequence( 1, categoria.totalPages, 1)}">
-                            <a class="page-link" th:href="@{/vacantes/indexPaginate?page={tmpPag} (tmpPag=${i-1}) }"
+                            <a class="page-link" th:href="@{/categorias/indexPaginate?page={tmpPag} (tmpPag=${i-1}) }"
                               th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
                           </li>
                           <li class="page-item"
                             th:classappend="${categoria.number == (categoria.totalPages - 1) ? 'disabled' : ''}">
-                            <a th:href="@{/vacantes/indexPaginate(page=${categoria.number + 1})}" class="page-link">Siguiente</a>
+                            <a th:href="@{/categorias/indexPaginate(page=${categoria.number + 1})}" class="page-link">Siguiente</a>
                           </li>
                         </ul>
                       </nav>

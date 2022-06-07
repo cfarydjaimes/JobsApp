@@ -17,11 +17,9 @@ public interface IVacanteService {
 
     void guardar(Vacante vacante);
 
-    List<Vacante> buscarPorDestacadas();
-
     void eliminar(Integer id);
 
     List<Vacante> buscarByExample(Example<Vacante> example);
 
-    Page<Vacante>buscarTodas(Pageable page);
+    Page<Vacante> buscarTodasPage(Pageable page);
 }

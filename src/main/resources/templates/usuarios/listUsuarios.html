@@ -44,7 +44,8 @@
                 <td th:text="${usuario.email}"></td>
                 <td th:text="${usuario.estatus}"></td>
                 <td>
-                  <a th:href="@{/usuarios/delete/{idUsu} (idUsu = ${usuario.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button"
+                  <a th:href="@{/usuarios/delete/{idUsu} (idUsu = ${usuario.id})}"
+                    onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button"
                     title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   <a href="#" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')"
                     class="btn btn-success btn-sm" role="button"
@@ -57,7 +58,23 @@
               </tr>
             </tbody>
           </table>
+          <nav th:if="${usuario.totalPages > 0}" aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" th:classappend="${usuario.number == 0 ? 'disabled' : ''}">
+                <a th:href="@{/usuarios/indexPaginate(page=${usuario.number - 1})}" class="page-link">Anterior</a>
+              </li>
 
+              <li class="page-item" th:classappend="${i eq usuario.number + 1} ? 'active'"
+                th:each="i : ${#numbers.sequence( 1, usuario.totalPages, 1)}">
+                <a class="page-link" th:href="@{/usuarios/indexPaginate?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}"
+                  th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+              </li>
+              <li class="page-item"
+                th:classappend="${usuario.number == (usuario.totalPages - 1) ? 'disabled' : ''}">
+                <a th:href="@{/usuarios/indexPaginate(page=${usuario.number + 1})}" class="page-link">Siguiente</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

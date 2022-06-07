@@ -2,6 +2,9 @@ package com.devcris.ofertas.Services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.devcris.ofertas.Models.Usuario;
 
 public interface IUsuarioService  {
@@ -13,4 +16,6 @@ public interface IUsuarioService  {
     List<Usuario> buscarTodos();
 
     Usuario buscarUsername(String username);
+
+    Page<Usuario> buscarTodas(Pageable page);
 }

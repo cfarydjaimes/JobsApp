@@ -1,7 +1,5 @@
 package com.devcris.ofertas.Controller;
 
-import java.util.List;
-
 import com.devcris.ofertas.Models.Categoria;
 import com.devcris.ofertas.Services.ICategoriaService;
 
@@ -16,31 +14,24 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping(value = "/categorias")
+@RequestMapping("/categorias")
 public class CategoriaController {
 
     @Autowired
     @Qualifier("categoriasServiceJpa")
     private ICategoriaService categoriaService;
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String verIndex(Model model) {
-        List<Categoria> list = categoriaService.buscarTodas();
-        model.addAttribute("categoria", list);
-        return "categorias/listCategorias";
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @GetMapping("/create")
     public String crear(Categoria categoria) {
         return "categorias/formCategoria";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public String guardar(Categoria categoria, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
@@ -48,9 +39,9 @@ public class CategoriaController {
                 System.out.println("Ocurrio el siguiente error: " + error.getDefaultMessage());
             }
         }
+        redirectAttributes.addFlashAttribute("msg", "Registro guardado!");
         categoriaService.guardar(categoria);
-        redirectAttributes.addFlashAttribute("msg", "Registro guardado");
-        return "redirect:/categorias/index";
+        return "redirect:/categorias/indexPaginate";
     }
 
     @GetMapping("/delete/{id}")
@@ -58,14 +49,14 @@ public class CategoriaController {
 
         String IdCat = Integer.toString(idCategoria);
         try {
-            categoriaService.eliminar(idCategoria);
             redirectAttributes.addFlashAttribute("msg", "Categoria Eliminada!");
+            categoriaService.eliminar(idCategoria);
 
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("msgImpossible", "La categoría con Id " + IdCat
                     + " no puede ser eliminada, porque su registro se encuentra asociado a una vacante.");
         }
-        return "redirect:/categorias/index";
+        return "redirect:/categorias/indexPaginate";
     }
 
     @GetMapping("/update/{id}")

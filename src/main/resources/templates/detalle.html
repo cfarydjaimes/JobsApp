@@ -7,9 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
-
   <title>EmpleosApp | Detalles de la Oferta de Trabajo</title>
-
   <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
   <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
@@ -17,14 +15,10 @@
 
 <body>
 
-  <header th:insert="fragments/menu :: menu-principal">
-
-  </header>
-
+  <header th:insert="fragments/menu :: menu-principal"></header>
   <main role="main">
     <hr>
     <div class="container">
-
       <div class="row">
         <div class="col-md-3">
           <img class="rounded mx-auto d-block" th:src="@{/logos/{temp} (temp = ${vacante.imagen})}"
@@ -32,11 +26,22 @@
         </div>
         <div class="col-md-9">
           <div class="card">
-            <h4 class="card-header">Aplicar para <strong th:text="${vacante.nombre}">Ingeniero Civil</strong></h4>
+            <div sec:authorize="isAnonymous()">
+              <h4 class="card-header"><strong class="text-success">Registrese o ingrese para aplicar a:</strong>
+                <span th:text="${vacante.nombre}"></span>
+              </h4>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+              <h4 class="card-header">Aplicar a:
+                <strong><span th:text="${vacante.nombre}"></span></strong>
+              </h4>
+            </div>
             <div class="card-body">
-              <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}">Name</span></h5>
-              <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vacante.fecha}">Date</span></h6>
-              <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vacante.salario}">Salary</span>
+              <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}"></span>
+              </h6>
+              <h6 class="card-title"><strong>Publicado: </strong> <span
+                  th:text="${#dates.format(vacante.fecha, 'dd-MM-yyyy')}"></span></h6>
+              <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vacante.salario}"></span>
               </h6>
               <p th:text="${vacante.descripcion}" class="card-text">Descripción</p>
               <div class="card bg-light mb-3">
@@ -45,8 +50,11 @@
                   <p class="card-text" th:utext="${vacante.detalles}"></p>
                 </div>
               </div>
-              <a class="btn btn-primary" href="#" role="button" title="Quiero aplicar para esta oferta de trabajo."><i
-                  class="fas fa-file" aria-hidden="true"></i> Aplicar</a>
+              <div sec:authorize="isAuthenticated()">
+                <a class="btn btn-success" th:href="@{/solicitudes/create/{temp} (temp=${vacante.id})}" role="button"
+                  title="Aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i>
+                  Aplicar</a>
+              </div>
             </div>
           </div>
         </div>

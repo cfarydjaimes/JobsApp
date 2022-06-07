@@ -8,6 +8,8 @@ import com.devcris.ofertas.Services.IUsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,6 +33,10 @@ public class UsuarioServiceJpa implements IUsuarioService {
 
     public Usuario buscarUsername(String username) {
         return usuariosRepository.findByUsername(username);
+    }
+
+    public Page<Usuario> buscarTodas(Pageable page) {
+        return usuariosRepository.findAll(page);
     }
 
 }
