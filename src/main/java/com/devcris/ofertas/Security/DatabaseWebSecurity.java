@@ -42,20 +42,25 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
                                 .permitAll()
                                 // Las vistas públicas no requieren autenticación
                                 .antMatchers("/",
+                                                "/login",
                                                 "/signup",
                                                 "/search",
                                                 "/bcrypt/**",
+                                                "/about",
                                                 "/vacantes/view/**")
                                 .permitAll()
                                 // Asignar permisos a URLs por ROLES
+                                .antMatchers("/solicitudes/create/**", "/solicitudes/save/**").hasAuthority("USUARIO")
+                                .antMatchers("/solicitudes/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
                                 .antMatchers("/vacantes/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
                                 .antMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
                                 .antMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
-                                .antMatchers("/solicitudes/**").hasAnyAuthority("ADMINISTRADOR")
+
                                 // Todas las demás URLs de la Aplicación requieren autenticación
                                 .anyRequest().authenticated()
                                 // El formulario de Login no requiere autenticacion
-                                .and().formLogin().loginPage("/login").permitAll();
+                                .and().formLogin().loginPage("/login").permitAll()        
+                                .and().logout().permitAll();
         }
 
         @Bean
